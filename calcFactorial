@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std; 
+
+int calcFactorial(int number); 
+int addTabs(int factorialNum); 
+
+
+int main()
+{
+	int userNumber = 0; 
+
+	//Getting number user wants to find factorial of 
+	cout << "What number do you want to find the factorial for? " << endl; 
+	cin >> userNumber; 
+
+	int factorialResult = calcFactorial(userNumber); 
+
+	cout << "factorial result : " << factorialResult << endl; 
+
+	int holdThis = 0; 
+	cin >> holdThis; 
+} 
+
+int calcFactorial(int number)
+{
+	if (number == 1 || number == 0)
+	{
+		return number = 1;
+	}
+	else
+	{
+		cout << "\tFunction call is " << number << " * calcFactorial( " << number << " - 1); " << endl;
+		int tabs = addTabs(number);
+		return number * calcFactorial(number - 1);
+	}
+}
+
+int addTabs(int factorialNum)
+{
+	if (factorialNum == 0 || factorialNum == 1)
+	{
+		return factorialNum = 1; 
+	}
+	else
+	{
+		cout << "\t";
+		return addTabs(factorialNum - 1);
+	}
+}
+
+
