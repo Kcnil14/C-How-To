@@ -1,0 +1,37 @@
+// Computer gcf using algorithm given in book 
+//Chapter 6_41
+
+#include <iostream>
+using namespace std; 
+
+int gcf(int num1, int num2); 
+
+int main()
+{
+	int userNum1 = 0;
+	int userNum2 = 0;
+
+	// Getting user input 
+	cout << "Enter two numbers to compute greatest common factor. The first number must be larger." << endl;
+	cin >> userNum1 >> userNum2;
+
+	int greatestFactor = gcf(userNum1, userNum2);
+
+	cout << greatestFactor << " is the greatest common factor of " << userNum1 << "and " << userNum2 << endl;
+
+  //Remove this for use outside visual studios 
+	int stopVar = 0; 
+	cin >> stopVar; 
+}
+
+int gcf(int num1, int num2)
+{
+	if (num2 == 0)
+	{
+		return num1; 
+	}
+	else
+	{
+		return gcf(num2, num1 % num2); 
+	}
+}
