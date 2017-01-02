@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cmath> 
+#include <string>
+using namespace std; 
+
+int testPalindrome(int position, string word); 
+
+int main()
+{
+	int initialPosition = 0; 
+	
+	//Prompt user to enter word 
+	string userString = ""; 
+	cout << "Enter a word to check if it's a palindrome. " << endl; 
+	getline(cin, userString); 
+	
+	int isPalindrome = testPalindrome(initialPosition, userString);
+
+	cout << isPalindrome << endl; 
+
+}
+
+int testPalindrome(int position, string word)
+{
+
+		int endPosition = word.length() - position; 
+		int wordMidpoint = word.length() / 2; 
+		
+		if (word[position] == word[endPosition -1])
+		{
+			if (position == wordMidpoint)
+			{
+				return 1; 
+			}
+			return testPalindrome(position + 1, word); 
+		}
+		else
+		{
+			return 0; 
+		}
+	
+}
