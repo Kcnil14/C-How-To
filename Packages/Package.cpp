@@ -1,22 +1,22 @@
-//Implementation of package.h
-//Ch11_9
+//Implementation of member functions package.h
+//Chapter11_9
 
 #include <iostream>
-#include <string>
 #include "Package.h"
 using namespace std; 
 
-//Implementing constructor 
-Package::Package(string sName, string sAddress, string sCity, string sState, int sZip, string rName, string rAddress, string rCity, string rState, int rZip, double pWeight, double cPerOz)
-	:senderName(sName),senderAddress(sAddress), senderCity(sCity), senderState(sState), senderZip(sZip), recipName(rName), recipAddress(rAddress), recipCity(rCity), recipState(rState), recipZip(rZip)
+//Constructor for package class
+Package::Package(const string &sName, const string &sAddress, const string &sCity, const string &sState, int sZip, const string &rName, const string &rAddress, const string &rCity, const string &rState, int rZip, double pWeight, double pCostPerOz): senderName(sName), senderAddress(sAddress), senderCity(sCity), senderState(sState), senderZip(sZip), recipName(rName), recipAddress(rAddress), recipCity(rCity), recipState(rState), recipZip(rZip)
 {
+	//Validating data members not in initalizer list
 	setWeight(pWeight); 
-	setCostPerOunce(cPerOz); 
+	setPricePerOz(pCostPerOz); 
+
 }
 
-void Package::setSenderName(string sName)
+void Package::setSenderName(const string &sName)
 {
-	senderName = sName;
+	senderName = sName; 
 }
 
 string Package::getSenderName() const
@@ -24,17 +24,17 @@ string Package::getSenderName() const
 	return senderName; 
 }
 
-void Package::setSenderAddress(string sAddress)
+void Package::setSenderAddress(const string &sAddress)
 {
 	senderAddress = sAddress; 
 }
 
-string Package::getSenderAddress() const 
+string Package::getSenderAddress() const
 {
 	return senderAddress; 
 }
 
-void Package::setSenderCity(string sCity)
+void Package::setSenderCity(const string &sCity)
 {
 	senderCity = sCity; 
 }
@@ -44,14 +44,14 @@ string Package::getSenderCity() const
 	return senderCity; 
 }
 
-void Package::setSenderState(string sState)
+void Package::setSenderState(const string &sState)
 {
 	senderState = sState; 
 }
 
-string Package::getSenderState() const 
+string Package::getSenderState() const
 {
-	return senderState; 
+	return senderState;
 }
 
 void Package::setSenderZip(int sZip)
@@ -64,76 +64,93 @@ int Package::getSenderZip() const
 	return senderZip; 
 }
 
- 
-void Package::setRecName(string rName)
+void Package::setRecipName(const string &rName)
 {
 	recipName = rName; 
 }
 
-string Package::getRecName() const
+string Package::getRecipName() const 
 {
 	return recipName; 
 }
 
-void Package::setRecAddress(string rAddress)
+void Package::setRecipAddress(const string &rAddress)
 {
 	recipAddress = rAddress; 
 }
 
-string Package::getRecAddress() const 
+string Package::getRecipAddress() const
 {
 	return recipAddress; 
 }
 
-void Package::setRecZip(int rZip)
+void Package::setRecipCity(const string &rCity)
+{
+	recipCity = rCity; 
+}
+
+string Package::getRecipCity() const
+{
+	return recipCity; 
+}
+
+void Package::setRecipState(const string &rState)
+{
+	recipState = rState; 
+}
+
+string Package::getRecipState() const
+{
+	return recipState; 
+}
+
+void Package::setRecipZip(int rZip)
 {
 	recipZip = rZip; 
 }
 
-int Package::getRecZip() const 
+int Package::getRecipZip() const
 {
 	return recipZip; 
 }
 
-
-void Package::setCostPerOunce(double cPerOz)
-{
-	if (cPerOz >= 0)
-	{
-		costPerOunce = cPerOz; 
-	}
-	else 
-	{
-		cout << "Enter positive value for cost per ounce." << endl;
-	} 
-}
-
-double Package::getCostPerOunce() const
-{
-	return costPerOunce; 
-}
-
 void Package::setWeight(double pWeight)
 {
-	if (pWeight >= 0)
+
+	if (pWeight >= 0.0)
 	{
 		weight = pWeight; 
 	}
 	else
 	{
-		cout << "Enter positive value for package weight." << endl; 
+		cout << "Must be >= 0." << endl; 
 	}
 }
 
-double Package::getWeight() const
+double Package::getWeight() const 
 {
 	return weight; 
 }
 
-double Package::calculateCost()
+void Package::setPricePerOz(double pCostPerOz)
 {
-	double totalCost = getWeight() * getCostPerOunce();  
-//	totalCost = weight * costPerOunce; 
+	if (pCostPerOz >= 0.0)
+	{
+		perOz = pCostPerOz; 
+	}
+	else
+	{
+		cout << "Must be >= 0.0" << endl; 
+	}
+}
 
-	return totalCost; 
+double Package::getPricePerOz() const
+{
+	return perOz; 
+}
+
+
+double Package::calculateCost() const
+{
+	return getPricePerOz() * getWeight(); 
 }
